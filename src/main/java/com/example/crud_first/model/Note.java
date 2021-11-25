@@ -10,13 +10,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "notes")
+@Table(name = "notes")//đánh dấu class này sẽ mapping vs bảng trong CSDL, bảng này có tên là Task
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdAt", "updatedAt"},
         allowGetters = true)
 public class Note implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id// đánh dấu trường sẽ là khóa chính
+    @GeneratedValue(strategy = GenerationType.IDENTITY)// giá trị sẽ tự sinh ra
     private Long id;
 
     @NotBlank
@@ -57,5 +57,17 @@ public class Note implements Serializable {
         this.content= (String) content;
     }
 
+    public Object getCreatedAt() {
+        return this.createdAt;
+    }
+    public void setCreatedAt(Object createdAt) {
+        this.createdAt= (Date) createdAt;
+    }
+    public Object getUpdatedAt() {
+        return this.updatedAt;
+    }
+    public void setupdatedAt(Object updatedAt) {
+        this.updatedAt= (Date) updatedAt;
+    }
     // Getters and Setters ... (Omitted for brevity)
 }
